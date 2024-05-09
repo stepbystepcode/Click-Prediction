@@ -60,11 +60,11 @@ val_dataset = Dataset.from_dict(preprocess_function(val_data))
 # 定义训练参数
 training_args = TrainingArguments(
     output_dir='./results',
-    num_train_epochs=3,
+    num_train_epochs=300,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=64,
     warmup_steps=500,
-    weight_decay=0.01,
+    weight_decay=0.0001,
     logging_dir='./logs',
     logging_steps=10,
     evaluation_strategy='steps',
