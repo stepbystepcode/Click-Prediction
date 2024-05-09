@@ -84,6 +84,7 @@ trainer = Trainer(
 trainer.train()
 
 # 保存微调后的模型
+tokenizer.save_pretrained('./fine_tuned_model')
 trainer.save_model('./fine_tuned_model')
 
 # 训练结束后进行评估
