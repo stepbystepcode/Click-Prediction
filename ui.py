@@ -37,7 +37,6 @@ def predict(input_mode, input_text, keyword, related_words, predict_words, categ
     result_dict = {'不会点击' if k == 0 else '会点击': v for k, v in enumerate(result_list)}
     return prediction_label, result_dict
 
-# 额外的说明信息
 extra_info = """
 ### Note
 Panelists: Jing Li, Guoyuan Li  
@@ -48,6 +47,9 @@ GitHub: [https://github.com/stepbystepcode/Click-Prediction](https://github.com/
 
 # 创建Gradio界面
 with gr.Blocks() as demo:
+    gr.Markdown("# Click Prediction Model")
+    gr.Markdown("Enter the keyword, related words, predict words, and category to predict the click probability.")
+    
     with gr.Row():
         with gr.Column():
             input_mode = gr.Radio(['All-in-one', 'Separate'], label='Input Mode', value='All-in-one')
@@ -59,6 +61,7 @@ with gr.Blocks() as demo:
         with gr.Column():
             prediction = gr.Label(label="Prediction")
             probabilities = gr.JSON(label="Probabilities")
+            predict_button = gr.Button("Predict")
             extra_info_content = gr.Markdown(extra_info)
 
     def wrapped_predict(input_mode, input_text, keyword, related_words, predict_words, category):
@@ -67,12 +70,10 @@ with gr.Blocks() as demo:
         except ValueError as e:
             return str(e), {}
 
-    predict_button = gr.Button("Predict")
-
     predict_button.click(
         fn=wrapped_predict,
         inputs=[input_mode, input_text, keyword, related_words, predict_words, category],
         outputs=[prediction, probabilities]
     )
 
-demo.launch()
+demo.launch(share=True)
