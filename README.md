@@ -34,13 +34,8 @@ This project implements a click prediction model using PyTorch and Hugging Face'
 
 ### Contributors
 
-- stepbystepcode
-- lglglglgy
+- [stepbystepcode](https://github.com/stepbystepcode)
+- [lglglglgy](https://github.com/lglglglgy)
 
 ### License
-MIT
-
-### Acknowledgements
-
-- This project was inspired by [mention any relevant inspirations or resources].
-- Special thanks to [acknowledge individuals or organizations] for their contributions or support.
+[MIT](LICENCE)
