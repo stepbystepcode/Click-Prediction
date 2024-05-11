@@ -25,8 +25,9 @@ def parse_input(input_text):
 def predict(input_mode, input_text, keyword, related_words, predict_words, category):
     if input_mode == "All-in-one":
         keyword, related_words, predict_words, category = parse_input(input_text)
-
     input_text = f"{keyword} {related_words} {predict_words} {category}"
+    input_text = input_text.replace("\"", "'")
+    print(input_text)
     inputs = tokenizer(input_text, return_tensors="pt", padding=True, truncation=True)
     with torch.no_grad():
         logits = model(**inputs).logits
